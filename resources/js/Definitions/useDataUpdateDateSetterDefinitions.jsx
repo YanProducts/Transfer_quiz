@@ -5,7 +5,7 @@ import OptionTextSetting from "@/CssSettings/OptionTextSetting";
 import LastDayOnMonthSetting from "@/Utils/Config/LastDayONMonthSetting";
 import SetErrorDisplayCSS from "@/CssSettings/SetErrorDisplayCSS";
 
-export default function DataUpdateDateSetterDefinitions(changeTheme){
+export default function useDataUpdateDateSetterDefinitions(changeTheme){
  // 現在日時
    const daySets=new Date();
 

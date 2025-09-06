@@ -21,7 +21,6 @@ class ConfigUpdateController extends Controller
             // トランザクションは各々の内部で行なっている
             $request->changeTheme==="onlyPlayer" ?  DataSetFlow::update_now_players() :  DataSetFlow::update_new_comer($request->updateSeason);
         }catch(\Throwable $e){
-            Log::info($e->getMessage());
             return Inertia::render("Error",[
             "message"=>config("app.env")==="local" ? $e->getMessage() : "設定上のエラーです"
         ]);
@@ -38,16 +37,16 @@ class ConfigUpdateController extends Controller
          DB::transaction(function()use($request){
              // すでに登録されているかで分ける。
              $data_change_date=new DataChangeDate()::find(1) ?? new DataChangeDate();
-  
+
              $new_date=new \Datetime(sprintf("%04d-%02d-%02d 0:0:0",$request->year,$request->month,$request->day));
-             
+
              // 以前の登録データ最新日時(参照)
              $old_date=$data_change_date->now_player_data_date ?? $new_date;
-  
+
              // 登録日時変更はpublicとlocalどちらであろうとも行う
              $data_change_date->now_player_data_date=$new_date;
              $data_change_date->save();
-  
+
               // transfer_dataの場合のみ行う(いつからいつまでの間の移籍データか)
               if($request->changeTheme==="transfer_data"){
                   $season_change=new SeasonChangeSetting()::find(1) ?? new SeasonChangeSetting();
@@ -57,7 +56,6 @@ class ConfigUpdateController extends Controller
               }
          });
        }catch(\Throwable $e){
-            Log::info($e->getMessage());
             return Inertia::render("Error",[
             "message"=>config("app.env")==="local" ? $e->getMessage() : "設定上のエラーです"]);
        }

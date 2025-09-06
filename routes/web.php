@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AnswerCheckController;
 use App\Http\Controllers\BeforeGameController;
 use App\Http\Controllers\ConfigCheckController;
 use App\Http\Controllers\ConfigUpdateController;
 use App\Http\Controllers\PlayingGameController;
+use App\Http\Controllers\GameClearController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Log;
@@ -17,9 +19,28 @@ Route::prefix("/transfer_quiz")->group(function(){
     Route::get('/topPage', [BeforeGameController::class,"show_top_page"])
     ->name("top_page_route");
 
-    // ゲーム開始
+    // ゲーム開始の投稿
     Route::post("/quiz_pattern_decide",[PlayingGameController::class,"quiz_pattern_decide"])
     ->name("quiz_pattern_decide_route");
+
+    // ゲームページへ(ランダム)
+    Route::get("/game_random",[PlayingGameController::class,"start_random_game"])
+    ->name("game_random_route");
+
+    // ゲームページへ(チームごと)
+    Route::get("/game_by_team",[PlayingGameController::class,"start_by_team_game"])
+    ->name("game_by_team_route");
+
+    // 回答チェック
+    Route::post("/game/answerCheck",[AnswerCheckController::class,"answer_check"])
+    ->name("answer_check_route");
+
+    // ゲームクリア
+    Route::post("/game.clear",[GameClearController::class,"game_clear"])
+    ->name("game_clear_route");
+
+    // ゲームクリアをリロードした時(トップに戻る)
+    Route::get("/game.clear",function(){return redirect()->route("top_page_route");});
 
     // お知らせ
     Route::get("/sign",function(){
@@ -28,7 +49,15 @@ Route::prefix("/transfer_quiz")->group(function(){
         ]);
     })->name("sign_route");
 
-    // エラーページへ
+    //エラーページ(フロントからencodeURIComponentで)
+    Route::get("/error_from_front",function(){
+                
+        return Inertia::render("Error",[
+            "message"=>request()->query("message") ?? "unexpected"
+        ]);
+    })->name("error_from_front_route");
+
+    // エラーページへ(Laravelからフラッシュsessionで)
     Route::get("/error",function(){
         return Inertia::render("Error",[
             "message"=>session("errorMessage")
@@ -58,12 +87,6 @@ Route::prefix("/transfer_quiz")->group(function(){
     // Route::get("/date_test",function(){
     //     return Inertia::render("OnlyConfig/DataUpdateDateSetter");
     // });
-
-
-    // 選手登録のみの更新(storage/app/localを使用:transfer_listの生成しない)
-
-    // 選手登録と新加入リストの更新(storage/app/publicを使用:transfer_listの生成する:同時に過去のSQLから過去の記録入力を行う)
-
 
  }
 );

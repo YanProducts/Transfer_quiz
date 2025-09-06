@@ -78,7 +78,6 @@ class SpecialCaseName{
            }
           });
       }catch(\Throwable $e){
-          Log::info($e->getMessage());
           return false;
       }
       return true;

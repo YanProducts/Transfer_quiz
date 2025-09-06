@@ -18,7 +18,7 @@ class BeforeGameController extends Controller
     public function show_top_page(){
 
         // session削除(該当分のみ。全削除したらcsrftokenのセッションも破棄してしまう)
-        Session::delete_sessions(["gameId","cate","name","quiz"]);
+        Session::delete_sessions(["game_id","unique_token","cate","name","quiz","answered_lists"]);
 
         // トップページへ
         return Inertia::render('TopPage',[

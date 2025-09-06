@@ -1,11 +1,11 @@
 import React from "react"
 // selectのセット メモ化したメモを呼び出す
 import ChoiceSelectComponentsOnDate from "@/CustomComponents/Config/ChoiceSelectComponentsOnDate";
-import DataUpdateDateSetterDefinitions from "@/Definitions/DataUpdateDateSetterDefinitions";
+import useDataUpdateDateSetterDefinitions from "@/Definitions/useDataUpdateDateSetterDefinitions";
 
 export default function DataUpdateDateSetter({changeTheme}){
 
-    const [daySets,post,data,setData,errors,setError,processing,monthLastDay,setMonthLastDay,onYearChange,onMonthChange,onDayChange,selectOptionHiddenStr,errorDisplay,onDataChangeClick]=DataUpdateDateSetterDefinitions(changeTheme);
+    const [daySets,post,data,setData,errors,setError,processing,monthLastDay,setMonthLastDay,onYearChange,onMonthChange,onDayChange,selectOptionHiddenStr,errorDisplay,onDataChangeClick]=useDataUpdateDateSetterDefinitions(changeTheme);
 
     return(
         <div>

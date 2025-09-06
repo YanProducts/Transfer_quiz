@@ -1,6 +1,15 @@
+import ErrorMessageChange from "@/Utils/Error/ErrorMessageChange";
 import Layout from "../Layouts/Layout";
 
 export default function Error({message}){
+
+
+    console.log(message);
+
+    // エラーメッセージの変更
+    // 必要なケースあるか要チェック！
+    ErrorMessageChange(message);
+
     return(
         <Layout pageName="Error" title="エラー">
             <>　</>

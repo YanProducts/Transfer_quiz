@@ -1,12 +1,12 @@
 import Layout from '@/Layouts/Layout';
 import ChoiceSelectComponents from '@/CustomComponents/TopPage/ChoiceSelectComponents';
 
-import TopPageDefinitions from '@/Definitions/TopPageDefinitions';
+import useTopPageDefinitions from '@/Definitions/useTopPageDefinitions';
 
 export default function TopPage({quizSets,nameSets,cateSets}){
 
   // 定義セット
-  const [post,data,setData,errors,setError,processing,errorDisplay,onDecideBtnClick]=TopPageDefinitions();
+  const [setData,errors,setError,processing,errorDisplay,onDecideBtnClick]=useTopPageDefinitions();
 
 
     return(

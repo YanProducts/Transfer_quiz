@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "@inertiajs/react";
 import SetErrorDisplayCSS from "@/CssSettings/SetErrorDisplayCSS";
 
-export default function PlayerDataChangeDefinitions(ChangeThemeOptions,SeasonChangeOptions){
+export default function usePlayerDataChangeDefinitions(ChangeThemeOptions,SeasonChangeOptions){
 
 
   // エラー表示
@@ -40,19 +40,12 @@ export default function PlayerDataChangeDefinitions(ChangeThemeOptions,SeasonCha
   },[data.changeTheme])
 
 
-
-
  React.useEffect(()=>{
      setData(prev=>({
          ...prev,
          "changeTheme":"aaa"
      }));
  },[])
-
-
-
-
-
 
 
   // 決定ボタン

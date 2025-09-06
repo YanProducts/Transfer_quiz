@@ -1,14 +1,14 @@
 import React from "react";
 import Checkbox from "@/Components/Checkbox";
 import TextInput from "@/Components/TextInput";
-import PlayerDataChangeDefinitions from "@/Definitions/PlayerDataChangeDefinitions";
+import usePlayerDataChangeDefinitions from "@/Definitions/usePlayerDataChangeDefinitions";
 import ChoiceSelectComponents from "@/CustomComponents/Config/ChoiceSelectComponents";
 import CheckListsComponents from "@/CustomComponents/Config/CheckListsComponents";
 
 export default function PlayerDataChange({ChangeThemeOptions,SeasonChangeOptions}){
 
   // 定義セット
-    const [checkAllTaskes,setCheckAllTaskes,passnumber,data,setData,errors,setError,processing,onDataChangeClick,errorDisplay,setErrorDisplay]=PlayerDataChangeDefinitions(ChangeThemeOptions,SeasonChangeOptions);
+    const [checkAllTaskes,setCheckAllTaskes,passnumber,data,setData,errors,setError,processing,onDataChangeClick,errorDisplay,setErrorDisplay]=usePlayerDataChangeDefinitions(ChangeThemeOptions,SeasonChangeOptions);
 
  return(
 <>

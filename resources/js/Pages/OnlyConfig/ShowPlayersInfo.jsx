@@ -10,7 +10,7 @@ export default function showPlayersInfo({with_kakko_players,no_comma_players,pas
     // ローカルじゃなければエラーページへ
     React.useEffect(()=>{
         if(import.meta.env.VITE_APP_ENV!=="local"){
-            get(`/error_view/?message=${encodeURIComponent("configNoLocalError")}`);
+            get(`/error_from_front/?message=configNoLocalError`);
         }
     },[]);
     // },[pageReady]);

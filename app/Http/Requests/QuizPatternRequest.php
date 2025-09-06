@@ -3,11 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Enums\CateEnum;
-use App\Enums\NameEnum;
-use App\Enums\QuizEnum;
-use BenSampo\Enum\Rules\Enum;
-use BenSampo\Enum\Rules\EnumKey;
+use App\Http\Requests\CommonParts\QuizPattern;
 
 // ゲーム開始の値のバリデーション
 class QuizPatternRequest extends FormRequest
@@ -27,11 +23,7 @@ class QuizPatternRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            "cate"=>["required","in:".implode(',', array_keys(CateEnum::jpnDescriptions()))],
-            "quiz"=>["required","in:".implode(",",array_keys(QuizEnum::jpnDescriptions()))],
-            "name"=>["required","in:".implode(",",array_keys(NameEnum::jpnDescriptions()))],
-        ];
+        return  QuizPattern::quizPatternRule();
     }
     public function messages(): array
     {

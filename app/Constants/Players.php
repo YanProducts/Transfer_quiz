@@ -32,4 +32,9 @@ class Players{
    ["team"=>"akita","player"=>"ははは"],
  ];
 
+//  同じチームに山　昇太と山昇　太
+ public static  $special_similar_names=[
+    // team=>[nameAのpart,nameBのpart]
+ ];
+
 }

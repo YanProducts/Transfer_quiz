@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        
         // 新しいシーズンクイズがいつからいつにかけての変化か(データは１つ)
         Schema::create('season_change_settings', function (Blueprint $table) {
             $table->id();

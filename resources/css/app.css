@@ -21,6 +21,9 @@
   .base_h1{
     @apply text-3xl mb-10 max-w-[700px]
   }
+  .base_border{
+    @apply border-black border-2
+  }
   .base_table{
     @apply base_frame bg-gray-200 w-4/5 mt-5 mb-5 border-black border-2
   }
@@ -41,20 +44,21 @@
       @apply  font-semibold bg-white  bg-opacity-80  active:translate-y-1 mt-7 py-2 w-3/5 max-w-[700px] min-w-[300px]
     }
   .base_link_p{
-     @apply text-center cursor-pointer  font-bold border-b-2 text-blue-600 border-blue-500
-     max-w-[100px] mx-auto
+     @apply text-center cursor-pointer  font-bold border-b-2
+     text-blue-600 shadow-white
+      mx-auto
    }
   .afterAnswer_div_common{
     @apply border-black rounded-lg text-center
   }
-  .right_div{
-    @apply afterAnswer_div_common w-28 border-8 border-double bg-yellow-300 text-lg font-bold  leading-normal animate-whenright
+  .correct_div{
+    @apply afterAnswer_div_common w-28 border-8 border-double bg-yellow-300 text-lg font-bold  leading-normal animate-whencorrect
   }
   .wrong_div{
     @apply afterAnswer_div_common w-10  border-4  bg-gray-400 text-base font-extrabold leading-snug animate-whenwrong
   }
   .already_div{
-    @apply right_div bg-gray-200
+    @apply correct_div bg-gray-200
   }
 }
 
