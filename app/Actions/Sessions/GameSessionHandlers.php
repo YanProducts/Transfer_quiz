@@ -20,4 +20,19 @@ class GameSessionHandlers{
             "answered_lists"=>[]
         ]);
     }
+
+    // used_sessionの登録
+    static public function setting_used_game_session(){
+        Session::create_sessions([
+            "used_session"=>session()->get("game_id")
+        ]);
+    }
+
+    static public function check_game_session(){
+        if(session()->get("game_id")===session()->get("used_session")){
+            return false;
+        }
+        return true;
+    }
+
 }

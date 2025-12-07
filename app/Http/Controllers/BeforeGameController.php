@@ -18,13 +18,21 @@ class BeforeGameController extends Controller
     public function show_top_page(){
 
         // session削除(該当分のみ。全削除したらcsrftokenのセッションも破棄してしまう)
-        Session::delete_sessions(["game_id","unique_token","cate","name","quiz","answered_lists"]);
+        Session::delete_sessions(["game_id","unique_token","used_session","cate","name","quiz","answered_lists"]);
 
         // トップページへ
         return Inertia::render('TopPage',[
             "quizSets"=>QuizEnum::jpnDescriptions(),
             "nameSets"=>NameEnum::jpnDescriptions(),
             "cateSets"=>CateEnum::jpnDescriptions()
+        ]);
+    }
+    public function delete_sessions_to_forbit_back_game(){
+        // session削除(該当分のみ。全削除したらcsrftokenのセッションも破棄してしまう)
+        Session::delete_sessions(["game_id","unique_token","used_session","cate","name","quiz","answered_lists"]);
+
+        return response()->json([
+            "deleteOk"=>"ok"
         ]);
     }
 }

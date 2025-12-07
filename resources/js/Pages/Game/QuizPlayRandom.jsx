@@ -1,4 +1,3 @@
-import usePlayRandCustomDefinitions from "@/Definitions/PlayRand/usePlayRandDefinitions";
 import { AfterAnswerComponent } from "@/CustomComponents/Game/Random/AfterAnswerComponent";
 import { InputComponent } from "@/CustomComponents/Game/Random/InputComponent";
 import Layout from "@/Layouts/Layout";
@@ -8,7 +7,6 @@ import usePlayRandDefinitions from "@/Definitions/PlayRand/usePlayRandDefinition
 
 export default function QuizPlayRandom({gameId,uniqueTokenBase,nameType,cate,teams,answerBoxCounts,season,from_date,to_date}){
 
-
     const {isAfter,isFirst,inputRef,answerTeamRef,uniqueToken,setFetchReturn,error,nowAnalyzing,setNowAnalyzing,setIsAfter,isCorrectState,setIsCorrectState,get}=usePlayRandDefinitions(uniqueTokenBase);
 
     // 回答がsubmitされたとき
@@ -16,16 +14,16 @@ export default function QuizPlayRandom({gameId,uniqueTokenBase,nameType,cate,tea
         e.preventDefault();
 
         onAnswerBtnClick(isAfter,nowAnalyzing,inputRef,answerTeamRef,setNowAnalyzing,nameType,cate,uniqueToken,gameId,setFetchReturn,get);
-
     }
 
     return (
       <Layout pageName="playRandom" title="ランダムに回答">
 
-          <div>　</div>
+        <p>　</p>
 
           {/* タイトルなど */}
-          <h1 className="base_h base_h1 base_backColor mb-1">Jリーグ移籍市場：整理クイズ！<br/>-{season}-</h1>   
+          <h1 className="base_h base_h1 base_backColor mb-1">Jリーグ移籍市場<span className="hidden sm:inline">：</span><br className="inline sm:hidden"/>整理クイズ！<br/>-{season}-</h1>   
+          
             <p className="base_backColor base_frame text-center text-lg font-bold mb-6">カテゴリー:{cate}</p>
 
             <h3 className="base_h py-1 mb-0 text-lg">新加入選手の{nameType}を記入してください</h3>
@@ -63,10 +61,8 @@ export default function QuizPlayRandom({gameId,uniqueTokenBase,nameType,cate,tea
                 isAfter={isAfter}
             />
 
-
             {/* reactで書き直す！！！ */}
             {error.validationError &&(<p className='base_error animate-whenerror'>{error.validationError}</p>)}
-
 
             <ResultView isAfter={isAfter} isFirst={isFirst}/>
             <div>　</div>

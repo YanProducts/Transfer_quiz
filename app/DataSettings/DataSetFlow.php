@@ -39,7 +39,7 @@ class DataSetFlow{
                  Teams::team_data_change();
                 }
             
-                // 新シーズンのセット
+                // 次のReactで滞った時の保険に、新シーズンのセット(ただしafetrが登録日時ではなく現在日時になる)
                 DateSettings::set_new_season($season);
             });
           }catch(\Throwable $e){

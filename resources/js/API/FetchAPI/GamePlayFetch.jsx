@@ -1,5 +1,7 @@
 // import { useCalculateDifferenceAndMovePage } from "../../Pages/Utils/useAccessTimeSetting";
 
+import { Inertia } from "@inertiajs/inertia";
+
 
 // RandomもByTeamも共通(変数の言葉のみ揃えた)
 // 回答ボタンを押した後に回答チェック
@@ -48,13 +50,15 @@ export default async function gameplay_fetch(props){
 
           // 新たにゲームが始まったとき
             if(returnJson?.customError==="gameId"){
-                alert("別のゲームが始められた可能性が高いので、ゲームを終了します");
-                localStorage.setItem("TransferQuizErrorOccured",true);
-                props.get("topPage");
-                localStorage.removeItem("TransferQuizErrorOccured");
+                
+                    alert("別のゲームが始められた可能性が高いので、ゲームを終了します");
 
-                // エラーを投げておかないと先に進んでエラーになるため投げる。実際は描写の前に移動
-                throw new Error("newGameStarted");
+                    // get遷移はInertia構築のタイミング次第でブレる
+                    window.location.href="/topPage";                    
+                    
+                    // エラーを投げておかないと先に進んでエラーになるため投げる。実際は描写の前に移動
+                    throw new Error("newGameStarted");
+                     
 
             // 二重投稿防止
             }else if(returnJson?.customError==="uniqueToken"){

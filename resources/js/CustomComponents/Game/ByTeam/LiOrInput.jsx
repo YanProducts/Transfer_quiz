@@ -28,7 +28,7 @@ export default function LiOrInput(total_n,blackOrWhite,openedInput,liHeight,nowA
             //  日本語入力開始
             onCompositionStart={onInputCompositionStart}
             //  日本語入力終了
-            onCompositionEnd={(e) => onInputCompositionEnd(total_n,e)}
+            onCompositionEnd={(e) => onInputCompositionEnd(total_n)}
             // 離れる際
             onBlur={(e)=>onInputBlur(total_n)}
             // 焦点が当たったらここにfocus

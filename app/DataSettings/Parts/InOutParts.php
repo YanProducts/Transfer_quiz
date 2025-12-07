@@ -177,7 +177,7 @@ class InOutParts{
       $new_comer->full=$full;
       $new_comer->part=$part;
       $new_comer->team=$team;
-      $new_comer->new_season=$season;
+      $new_comer->season=$season;
       $new_comer->save();
     }
 

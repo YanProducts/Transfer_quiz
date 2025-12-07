@@ -5,7 +5,7 @@ import { useOnInputChange } from "@/Actions/PlayTeam/useOnInputChange";
 export const AnsweredLiComponents=({total_n,team,blackOrWhite,boxes,openedInput,liHeight,nowAnalyzing,isAfter,inputRefs,inputSets,setInputSets})=>{
 
   // Input周りの入力時の動き
-  const {onInputCompositionStart,onInputCompositionEnd,onInputChange,onInputBlur,onInputFocus}=useOnInputChange(team,setInputSets,inputRefs,inputSets,nowAnalyzing);
+  const {onInputCompositionStart,onInputCompositionEnd,onInputChange,onInputBlur,onInputFocus}=useOnInputChange(team,setInputSets,inputRefs,nowAnalyzing);
 
   const LiComponents=[]
 

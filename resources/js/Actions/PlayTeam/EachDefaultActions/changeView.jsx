@@ -12,6 +12,9 @@ export default function changeView(isAfter,setNowAnalyzing,setInputSets,finishTe
            const timer=setTimeout(()=>{
                // クリアしたかどうか？
                let isClear=false;
+
+               console.log(finishTeam);
+               console.log(teams.length);
  
               //   正解チームの数が合計のチーム数を超えた時
                if(finishTeam.length>=teams.length){

@@ -1,6 +1,6 @@
 import React from "react";
-import alreadyPlayedInformationSetting from "@/Utils/Game/AutoPageTransition/alreadyPlayedInformationSetting";
-import backToTopPageWhenPlayGame from "@/Utils/Game/AutoPageTransition/backToTopPage";
+import useAlreadyPlayedInformationSetting from "@/Utils/Game/AutoPageTransition/useAlreadyPlayedInformationSetting";
+import useBackToTopPageWhenPlayGame from "@/Utils/Game/AutoPageTransition/useBackToTopPage";
 import settingRightState from "./EachDefaultActions/settingRightState";
 import { settingIsAfterWhenNotCorrect } from "./EachDefaultActions/settingIsAfterWhenNotCorrect";
 import settingRightCount from "./EachDefaultActions/settingRightCount";
@@ -12,9 +12,9 @@ import visitErrorPage from "@/Utils/Error/ToErrorRoute";
 export default function useDefaultActions(isFirst,setIsFirst,fetchReturn,setUniqueToken,setIsRightState,setNowAlreadyPlayers,setError,isRightState,isAfter,setIsAfter,setRightCountForUI,rightCountForUI,finishTeam,setFinishTeam,teams,teamsAndBox,setOpenedInput,setNowAnalyzing,setInputSets,moveResult,setMoveResult,error,post){
 
 // 条件に合った際はトップページへ遷移
-backToTopPageWhenPlayGame();
+useBackToTopPageWhenPlayGame();
 // リロードの際のページ遷移の案内と準備
-alreadyPlayedInformationSetting();
+useAlreadyPlayedInformationSetting();
 
 // 最初だけ、回答済み選手のlocalStorageを空にする
  React.useEffect(()=>{

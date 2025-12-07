@@ -1,16 +1,23 @@
 import Layout from '@/Layouts/Layout';
 import ChoiceSelectComponents from '@/CustomComponents/TopPage/ChoiceSelectComponents';
+import useTopPageDefinitions from '@/Definitions/TopPage/useTopPageDefinitions';
+import React from 'react';
+import useDeleteSessionDefinitions from '@/Definitions/TopPage/useDeleteSessionDefinitions';
 
-import useTopPageDefinitions from '@/Definitions/useTopPageDefinitions';
 
 export default function TopPage({quizSets,nameSets,cateSets}){
 
+  
+  // ゲームのsession一式を削除のfetch
+  // (cacheをno-storeにはしているが)万が一、戻るから再びゲームに入るのを防ぐために先に定義
+  useDeleteSessionDefinitions();
+
   // 定義セット
-  const [setData,errors,setError,processing,errorDisplay,onDecideBtnClick]=useTopPageDefinitions();
+  const [setData,pageErrors,errors,setError,processing,errorDisplay,onDecideBtnClick]=useTopPageDefinitions();
 
 
     return(
-      <Layout pageName="TopPage">
+      <Layout pageName="TopPage" pageErrors={pageErrors}>
         <>
            <div>　</div>
             <h1 className='base_h base_h1 py-2 mb-0'>Jリーグ(25年夏)</h1>

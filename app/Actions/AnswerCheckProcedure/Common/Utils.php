@@ -17,6 +17,7 @@ class Utils{
             throw new \Error("gameId");
         }
 
+
         // 二重投稿(エラーは投げるがJs側で遷移はしない)
         if($unique_token!==session()->get("unique_token")){
             Log::info("duplicated");

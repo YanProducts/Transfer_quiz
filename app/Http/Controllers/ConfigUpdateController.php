@@ -38,7 +38,7 @@ class ConfigUpdateController extends Controller
              // すでに登録されているかで分ける。
              $data_change_date=new DataChangeDate()::find(1) ?? new DataChangeDate();
 
-             $new_date=new \Datetime(sprintf("%04d-%02d-%02d 0:0:0",$request->year,$request->month,$request->day));
+             $new_date=new \Datetime(sprintf("%04d-%02d-%02d 0:0:0",$request->year,$request->month,$request->day))->format("Y-m-d");
 
              // 以前の登録データ最新日時(参照)
              $old_date=$data_change_date->now_player_data_date ?? $new_date;
@@ -48,10 +48,10 @@ class ConfigUpdateController extends Controller
              $data_change_date->save();
 
               // transfer_dataの場合のみ行う(いつからいつまでの間の移籍データか)
-              if($request->changeTheme==="transfer_data"){
+              if($request->changeTheme==="transferData"){               
                   $season_change=new SeasonChangeSetting()::find(1) ?? new SeasonChangeSetting();
                   $season_change->before=$old_date;
-                  $season_change->before=$new_date;
+                  $season_change->after=$new_date;
                   $season_change->save();
               }
          });

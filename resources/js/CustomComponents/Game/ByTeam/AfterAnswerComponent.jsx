@@ -1,9 +1,7 @@
 import React from "react";
-import { useForm } from "@inertiajs/react";
 import NowAlreadyPlayersLists from "./NowAlreadyPlayersLists";
 
 export const AfterAnswerComponent=({isAfter,isRightState,rightCountForUI,nowAlreadyPlayers,inputSets,inputRefs})=>{
-
 
 //   回答後、inputSetsが空になった時に、inputRefも空にする
   React.useEffect(()=>{

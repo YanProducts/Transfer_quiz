@@ -41,7 +41,7 @@
     @apply  bg-pink-50 text-red-600 font-bold text-center border-y py-1 border-black my-0 overflow-hidden
   }
   .base_link{
-      @apply  font-semibold bg-white  bg-opacity-80  active:translate-y-1 mt-7 py-2 w-3/5 max-w-[700px] min-w-[300px]
+      @apply  font-semibold bg-white  bg-opacity-80  active:translate-y-1  mb-3 mt-5 py-1 w-3/5 max-w-[700px] min-w-[300px]
     }
   .base_link_p{
      @apply text-center cursor-pointer  font-bold border-b-2

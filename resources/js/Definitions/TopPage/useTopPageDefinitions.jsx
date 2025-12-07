@@ -1,6 +1,7 @@
 import React from 'react';
 import {useForm} from '@inertiajs/react';
 import SetErrorDisplayCSS from '@/CssSettings/SetErrorDisplayCSS';
+import {usePage} from '@inertiajs/react';
 
 export default function useTopPageDefinitions(){
 
@@ -13,6 +14,9 @@ export default function useTopPageDefinitions(){
       "quiz":"",
       "name":"",
     })
+
+    // リンクからGet遷移でののエラー
+    const { errors: pageErrors } = usePage().props 
 
     // errorsによって変化
     const [errorDisplay,setErrorDisplay]=React.useState("hidden");
@@ -32,5 +36,5 @@ export default function useTopPageDefinitions(){
       }
     }
 
-    return[setData,errors,setError,processing,errorDisplay,onDecideBtnClick];
+    return[setData,pageErrors,errors,setError,processing,errorDisplay,onDecideBtnClick];
 }

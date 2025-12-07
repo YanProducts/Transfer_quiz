@@ -11,7 +11,7 @@
     // ランダムの場合
     static public function byRandom($cate){
     // 該当シーズンの新加入選手のコレクション
-     $new_comer_in_season=NewComer::where("new_season",SeasonChangeSetting::value("season"));
+     $new_comer_in_season=NewComer::where("season",SeasonChangeSetting::value("season"));
     //    カテゴリーごとの
      if($cate!=="all"){
         $new_comer_in_season->whereIn("team", Team::where("cate","=",$cate)->pluck("eng_name"));
@@ -33,7 +33,7 @@
         // そのシーズン&カテゴリーの選手の取得
         // 英語のチーム名=>選手数の配列で返す
         // N+1を避ける
-        $returned_array=NewComer::where("new_season",SeasonChangeSetting::value("season"))->whereIn("team",array_keys($teams->toArray()))->selectRaw("team, COUNT(*) as teamCounts")->groupBy("team")->pluck("teamCounts","team")->toArray();
+        $returned_array=NewComer::where("season",SeasonChangeSetting::value("season"))->whereIn("team",array_keys($teams->toArray()))->selectRaw("team, COUNT(*) as teamCounts")->groupBy("team")->pluck("teamCounts","team")->toArray();
 
         
         // １人もいないチームは0を返す

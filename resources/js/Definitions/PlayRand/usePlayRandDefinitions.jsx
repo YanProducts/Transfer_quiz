@@ -1,17 +1,17 @@
 import React from "react";
 // import InformationBeforeTransition from "../Game/Part/InfomationBeforeTransition";
 import { useForm } from "@inertiajs/react";
-import alreadyPlayedInformationSetting from "@/Utils/Game/AutoPageTransition/alreadyPlayedInformationSetting";
-import backToTopPageWhenPlayGame from "@/Utils/Game/AutoPageTransition/backToTopPage";
+import useAlreadyPlayedInformationSetting from "@/Utils/Game/AutoPageTransition/useAlreadyPlayedInformationSetting";
+import useBackToTopPageWhenPlayGame from "@/Utils/Game/AutoPageTransition/useBackToTopPage";
 import visitErrorPage from "@/Utils/Error/ToErrorRoute";
 
 // ランダム版の定義セット
 export default function usePlayRandDefinitions(uniqueTokenBase){
 
-    // 条件に合った際はトップページへ遷移
-    backToTopPageWhenPlayGame();
+    // 条件に合った際はトップページへ遷移(リロード、戻るで到達、エラー)
+    useBackToTopPageWhenPlayGame();
     // リロードの際のページ遷移の案内と準備
-    alreadyPlayedInformationSetting();
+    useAlreadyPlayedInformationSetting();
 
     // fetch後のオブジェクト格納
     const [fetchReturn,setFetchReturn]=React.useState({});

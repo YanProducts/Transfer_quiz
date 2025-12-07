@@ -16,7 +16,7 @@ final class UpdateDataSeasonEnum extends Enum
     const End25 = 1;
     const End26 = 2;
     const Mid26_27 = 3;
-    const End26_17 = 4;
+    const End26_27 = 4;
 
     // キーを配列返し
     use EnumTrait;
@@ -25,8 +25,8 @@ final class UpdateDataSeasonEnum extends Enum
     public static function jpnDescriptions(){
         return[
             "Mid25"=>"25年夏",
-            "End25"=>"25=>26年",
-            "End26"=>"26年前期=>26-27年",
+            "End25"=>"26年冬",
+            "End26"=>"26年夏",
             "Mid26_27"=>"26-27の前期",
             "End26_27"=>"26-27年度末"
         ];

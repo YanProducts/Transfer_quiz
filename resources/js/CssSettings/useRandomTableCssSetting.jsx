@@ -1,15 +1,17 @@
 import React from "react";
 
-export function
-OnRondomResultColumns({setThContents}){
+export default function useRandomTableCssSetting(setThContents,setThWidth){
+
     const thViewChange=()=>{
         if(window.innerWidth<400){
+            setThWidth({1:"w-[15%]",2:"w-[65%]",3:"w-[35%]"})
             setThContents({
                 num:"数",
                 player:"選手",
                 team:"チーム"
             })
         }else if(window.innerWidth<600){
+            setThWidth({1:"w-1/6",2:"w-2/3",3:"w-1/6"})
             setThContents({
                 num:"回答数",
                 player:"選手",
@@ -32,25 +34,5 @@ OnRondomResultColumns({setThContents}){
          window.removeEventListener("resize",thViewChange)
         });
     },[]);
-    return null;
 }
 
-export function StyleRondom(){
-    return(
-        <style>
-            {`
-                @media (max-width:400px){
-                    .custom_th_1,.custom_td_1{
-                        width:15%;
-                    }
-                    .custom_th_2,.custom_td_2{
-                        width:65%;
-                    }
-                    .custom_th_3,.custom_td_3{
-                        width:35%;
-                    }
-                }
-            `}
-        </style>
-    )
-}

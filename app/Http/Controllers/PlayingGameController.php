@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Log;
 
 class PlayingGameController extends Controller
 {
+
     //ゲームパターン決定
     public function quiz_pattern_decide(QuizPatternRequest $request){
 
@@ -36,6 +37,12 @@ class PlayingGameController extends Controller
         // 複数回出てくるのでセット
         $cate=session()->get("cate");
 
+        // リロードや戻る対策：遷移前と同じセッションで開始のルートに到達していないか
+        if(!$this->refuse_same_game_sessions()){
+            return redirect()->route("top_page_redirect_route");
+        }
+
+
         return Inertia::render("Game/QuizPlayRandom",[
                 "gameId"=>session()->get("game_id"),
                 "uniqueTokenBase"=>session()->get("unique_token"),
@@ -51,8 +58,15 @@ class PlayingGameController extends Controller
 
     // チームごとゲーム開始
     public function start_by_team_game(){
+
         // 複数回出てくるのでセット
         $cate=session()->get("cate");
+
+        // リロードや戻る対策：遷移前と同じセッションで開始のルートに到達していないか
+        if(!$this->refuse_same_game_sessions()){
+            return redirect()->route("top_page_redirect_route");
+        }
+
         return Inertia::render("Game/QuizPlayByTeam",[
             "gameId"=>session()->get("game_id"),
             "uniqueTokenBase"=>session()->get("unique_token"),
@@ -64,5 +78,19 @@ class PlayingGameController extends Controller
             "from_date"=>new \Datetime(SeasonChangeSetting::value("before"))->format("n/j"), //いつからのデータか
             "to_date"=>new \Datetime(SeasonChangeSetting::value("after"))->format("n/j") //いつまでのデータか
         ]);
+    }
+
+    // リロードや戻る対策：遷移前と同じセッションで開始のルートに到達していないか
+    private function refuse_same_game_sessions(){
+
+
+      // (リロード対策)今回のsessionがused_game_sessionが今回のものならtopPageに戻る
+      if(!GameSessionHandlers::check_game_session()){
+        return false;
+        }
+        
+        // used_game_sessionを今回のsessionにする
+        GameSessionHandlers::setting_used_game_session();
+        return true;
     }
 }

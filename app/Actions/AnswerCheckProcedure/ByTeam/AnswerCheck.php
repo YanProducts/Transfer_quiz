@@ -14,6 +14,8 @@ class AnswerCheck {
         // 新たにゲームが開始していないか？、二重投稿ではないか？(&新しいユニークトークンの作成=ここでやらないと二重投稿が引っかからない)
         Utils::id_token_check($request->gameId,$request->unique_token);
 
+        Log::info("一応次へ");
+
         // 初期のanswered。後に正解者を格納していき「今回だけで同じ2人回答位した」に対応
         // $answered=$request->answered;
 
@@ -27,11 +29,14 @@ class AnswerCheck {
             // 1人ずつ正解判定
             foreach($request->answer as $answer_lists_with_team){
 
+                // requestのパラメータで複数回出るものをセット
+                $name_type=$request->nameType;
+
                     $team=$answer_lists_with_team["team"];
                     $answer=$answer_lists_with_team["player"];
 
                     // 正解判定
-                    [$correct_players_data_in_sql,$player]=JudgeAnswer::JudgeAnswer_procedure($answer,$team,$request->nameType);
+                    [$correct_players_data_in_sql,$player]=JudgeAnswer::JudgeAnswer_procedure($answer,$team,$name_type);
             
                     $correct_players_data=$correct_players_data_in_sql->pluck("full");
 
@@ -64,7 +69,7 @@ class AnswerCheck {
                        
                                    
                        // 正解者の数をSQLに格納
-                        StoreAnsweredToSql::store_correct_counts($correct_players_data_in_sql);
+                        StoreAnsweredToSql::store_correct_counts($correct_players_data_in_sql,$name_type);
                         
 
                        

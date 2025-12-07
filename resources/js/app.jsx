@@ -5,6 +5,7 @@ import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
 
+
 createInertiaApp({
     title: (title) => `${title ? title : "移籍クイズ"}`,
     resolve: (name) =>

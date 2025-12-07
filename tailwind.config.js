@@ -60,9 +60,6 @@ export default {
                 whencorrect:"whencorrect_anime 3s 1 normal forwards",
                 whenwrong:"whenwrong_anime 3s 1 normal forwards",
             }
-
-
-
         },
     },
 

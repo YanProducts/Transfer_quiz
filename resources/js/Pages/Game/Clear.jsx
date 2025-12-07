@@ -1,6 +1,9 @@
 import Layout from "@/Layouts/Layout";
 export default function Clear({cate,nameType,quizType}){
 
+  // クリア時に向かったあとはremove、戻ったらトップに遷移するようにする
+  localStorage.removeItem("TransferQuizCleared");
+
   return(
     <Layout pageName="Claer" title="ゲームクリア" >
       <p>　</p>

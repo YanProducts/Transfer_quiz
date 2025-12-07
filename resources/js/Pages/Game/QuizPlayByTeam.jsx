@@ -20,10 +20,11 @@ export default function QuizPlayByTeam({gameId,uniqueTokenBase,nameType,cate,tea
   return(
     <Layout pageName="playRandom" title="チームごとに回答">
       {/* タイトル〜回答ボタン部分 */}
-           <h1 className="base_h base_h1 base_backColor mb-1">Jリーグ移籍市場：整理クイズ！<br/>-{season}-</h1>   
+          <p>　</p>
+           <h1 className="base_h base_h1 base_backColor mb-1">Jリーグ移籍市場<span className="hidden sm:inline">：</span><br className="inline sm:hidden"/>整理クイズ！<br/>-{season}-</h1>   
             <p className="base_backColor base_frame text-center text-lg font-bold mb-6">カテゴリー:{cate}</p>
           <div>
-            <h3 className="base_h py-1 mb-0 text-lg">チームごとの新加入選手の{name}を記入してください</h3>
+            <h3 className="base_h py-1 mb-0 text-lg">チームごとの新加入選手の<br className="inline md:hidden"/>{nameType}を記入してください</h3>
             <p className='base_backColor base_frame mt-0 text-sm mb-4 pb-1 text-center font-bold'>{`Jデータサイト ${from_date}~${to_date}変化分`}</p>
           </div>
                     {/* 正否表示 */}
